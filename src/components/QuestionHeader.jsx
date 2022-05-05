@@ -1,4 +1,4 @@
-const Quiz=({children,question})=>{
+const QuestionHeader=({children,question})=>{
     return(
         <div className="block bg-green-600 p-4 m-4  rounded-md">
             <div>
@@ -8,4 +8,4 @@ const Quiz=({children,question})=>{
         </div>
     )
 }
-export default Quiz;
+export default QuestionHeader;
