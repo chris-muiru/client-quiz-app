@@ -5,7 +5,6 @@ import Main from "./components/Main";
 import "./assets/output.css";
 import Footer from "./components/Footer";
 import Question from "./components/Question";
-import { useParams } from "react-router-dom";
 function App() {
 	return (
 		<div className="w-full bg-slate-700 block fixed h-full">
@@ -18,7 +17,7 @@ function App() {
 						path="/quiz/:id"
 						element={
 							<>
-								<Question id=""/>
+								<Question/>
 							</>
 						}
 					/>
