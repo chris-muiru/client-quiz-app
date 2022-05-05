@@ -20,7 +20,7 @@ const NavBar = () => {
 				</svg>
 			</div>
 			<nav className="hidden p-4 rounded-md sm:flex">
-				<div className="absolute right-5">
+				<div className="absolute right-5 px-10 box-border">
 					<button className="text-white m-7 hover:border hover:rounded-md p-1">
 						Main
 					</button>
