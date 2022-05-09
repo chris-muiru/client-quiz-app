@@ -18,7 +18,6 @@ const Main = () => {
 		data = await data.json();
 		setQuestions(data);
 	};
-	// console.log(questions[0]);
 	useEffect(() => {
 		fetchQuestions();
 	}, []);
@@ -26,9 +25,9 @@ const Main = () => {
 
 	return (
 		<div className="flex w-3/4 m-auto flex-col mt-10 xl:w-1/2">
-			{questions.map(({ quiz_pk, question }) => {
+			{questions.map(({ id, question }) => {
 				return (
-					<Link to={`/quiz/${quiz_pk}`}>
+					<Link to={`/quiz/${id}`}>
 						<QuestionHeader question={question} />
 					</Link>
 				);
