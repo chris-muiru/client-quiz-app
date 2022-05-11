@@ -1,13 +1,11 @@
-import React from "react";
-import Main from "../components/Main";
+import Dashboard from "../components/DashBoard";
 import Question from "../components/Question";
 import { Routes, Route } from "react-router-dom";
-
 const NavRoutes = () => {
 	return (
 		<Routes>
-			<Route path="" element={<Main />} />
-			<Route path="/quiz/:id" element={<Question />} />
+			<Route path=":id" element={<Question />} />
+			<Route path="" element={<Dashboard />} />
 		</Routes>
 	);
 };
