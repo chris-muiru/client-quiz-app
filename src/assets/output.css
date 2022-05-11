@@ -799,6 +799,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   .sm\:w-1\/2 {
     width: 50%;
   }
+
+  .sm\:w-3\/4 {
+    width: 75%;
+  }
+
+  .sm\:rounded-sm {
+    border-radius: 0.125rem;
+  }
+
+  .sm\:rounded-md {
+    border-radius: 0.375rem;
+  }
 }
 
 @media (min-width: 1280px) {
