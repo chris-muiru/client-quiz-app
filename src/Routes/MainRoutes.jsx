@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Navigate, Routes } from "react-router-dom";
 import { useAuthContext } from "../AuthProvider";
 import Main from "../Main";
-const ConnectorRoute = () => {
+const MainRoutes = () => {
 	let { user } = useAuthContext();
 	return (
 		<Routes>
@@ -14,4 +14,4 @@ const ConnectorRoute = () => {
 	);
 };
 
-export default ConnectorRoute;
+export default MainRoutes;
