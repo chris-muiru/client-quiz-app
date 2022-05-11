@@ -1,29 +1,19 @@
-import {
-	BrowserRouter as Router,
-	Route,
-	Routes,
-	Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./assets/output.css";
-import Main from "./Main";
-import Login from "./components/authentication/LogIn";
 import Header from "./components/Header";
-// import PrivateRoute from "./utils/PrivateRoute";
-import { useAuthContext } from "./AuthProvider";
+import AuthProvider from "./AuthProvider";
+import ConnectorRoute from "./Routes/ConnectorRoute";
+import AuthRoutes from "./Routes/AuthRoutes";
 const App = () => {
-	let { user } = useAuthContext();
 	return (
 		<div className="w-full bg-slate-700 block fixed h-full">
 			<Header />
-			<Router>
-				<Routes>
-					<Route
-						path="/dash/*"
-						element={!user ? <Navigate to="/auth" /> : <Main />}
-					></Route>
-					<Route path="/auth" element={<Login />} />
-				</Routes>
-			</Router>
+			<AuthProvider>
+				<Router>
+					<ConnectorRoute />
+					<AuthRoutes />
+				</Router>
+			</AuthProvider>
 		</div>
 	);
 };
