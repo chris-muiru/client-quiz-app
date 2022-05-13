@@ -23,9 +23,7 @@ const Question = () => {
 	useEffect(() => {
 		fetchQuestionSelected();
 	}, []);
-	console.log(questionDetails);
-	let { answer } = questionDetails;
-	console.log(answer);
+	console.log(questionDetails.choices)
 	return (
 		<div className="mt-20 text-white text-center w-3/4 m-auto rounded-sm">
 			{questionDetails.question}
