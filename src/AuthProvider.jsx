@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
 import jwtDecode from "jwt-decode";
 
 const AuthContext = createContext();
@@ -9,6 +9,7 @@ export function useAuthContext() {
 const BASE = "http://localhost:8000";
 
 const AuthProvider = ({ children }) => {
+	let refreshInterval = useRef(0);
 	const [user, setUser] = useState(() =>
 		localStorage.getItem("quizAppTokens")
 			? jwtDecode(localStorage.getItem("quizAppTokens"))
@@ -34,7 +35,6 @@ const AuthProvider = ({ children }) => {
 			}),
 		});
 		let data = await response.json();
-		console.log(data);
 		if (response.status === 200) {
 			setToken(data);
 			setUser(jwtDecode(data.access));
@@ -45,13 +45,13 @@ const AuthProvider = ({ children }) => {
 		}
 	};
 	let logOutUser = () => {
+		console.log("clicked");
 		setToken(null);
 		setUser(null);
 		localStorage.removeItem("authTokens");
 		window.location = "/auth";
 	};
 	const refreshToken = async () => {
-		console.log(token.refresh);
 		const response = await fetch(`${BASE}/api/token/refresh/`, {
 			method: "POST",
 			headers: {
@@ -69,9 +69,13 @@ const AuthProvider = ({ children }) => {
 		}
 	};
 	const getToken = () => {
+		if (jwtDecode(token.access).exp < Date.now() / 1000) {
+			localStorage.clear();
+			window.location = "/auth";
+		}
 		return token.access;
 	};
-
+	// if token not fetched,redirect to main page
 	let contextData = {
 		user: user,
 		loginUser: loginUser,
@@ -79,15 +83,15 @@ const AuthProvider = ({ children }) => {
 		getToken: getToken,
 	};
 	useEffect(() => {
-		let refreshInterval = setInterval(() => {
+		refreshInterval.current = setInterval(() => {
 			if (token) {
 				refreshToken();
 			}
 		}, 240000);
 		return () => {
-			clearInterval(refreshInterval);
+			clearInterval(refreshInterval.current);
 		};
-	}, []);
+	}, [token]);
 	return (
 		<AuthContext.Provider value={contextData}>
 			{children}
