@@ -3,11 +3,11 @@ const Footer = () => {
      * a footer 
      */
 	return (
-		<div className="bg-slate-800 absolute bottom-0 w-full">
+		<div className="bg-black absolute bottom-0 w-full">
 			<div className="">
 			</div>
-			<div class="bg-slate-900">
-				<span>2021 Copyright: kris slinger</span>
+			<div class="bg-black text-white text-center">
+				<span>2021 Copyright: kris muiru</span>
 			</div>
 		</div>
 	);
