@@ -18,13 +18,56 @@ const Question = () => {
 		data = await data.json();
 		setQuestionDetails(data);
 	};
+	let appendQuestion = (object) => {
+		let arr = [];
+		if (object.length !== 0) {
+			let { question, choices } = object;
+			let { opp1, opp2 } = choices[0];
+			arr.push(
+				<div className="">
+					<h2 className="mb-3">{question}</h2>
+					<form action="">
+						<input
+							type="radio"
+							id="opp1"
+							name="quizgroup"
+							className="my-10 mr-10"
+							value={opp1}
+						/>
+						<label for="opp1" className="">
+							{opp1}
+						</label>
+						<br />
+						<input
+							type="radio"
+							id="opp2"
+							name="quizgroup"
+							className="my-10 mr-10"
+							value={opp2}
+						/>
+						<label for="opp2">{opp2}</label>
+						<br />
+						<button
+							type="submit"
+							className="bg-green-500 border-none rounded-md p-3 w-96"
+						>
+							Submit
+						</button>
+					</form>
+				</div>
+			);
+		}
+		return arr;
+	};
 	useEffect(() => {
 		fetchQuestionSelected();
 	}, []);
-	
+	// todo: come up with logic that allows the fetchQuestionSelected to always update questionDetails after every render
+	let questionArr = appendQuestion(questionDetails);
+	console.log(questionArr);
 	return (
-		<div className="mt-20 text-white text-center w-3/4 m-auto rounded-sm">
-		
+		<div className="mt-20 w-3/4  text-white m-auto rounded-sm">
+			{questionArr}
 		</div>
 	);
 };
