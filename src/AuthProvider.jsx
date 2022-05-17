@@ -68,6 +68,7 @@ const AuthProvider = ({ children }) => {
 			logOutUser();
 		}
 	};
+
 	const getToken = () => {
 		if (jwtDecode(token.access).exp < Date.now() / 1000) {
 			localStorage.clear();
@@ -98,5 +99,5 @@ const AuthProvider = ({ children }) => {
 		</AuthContext.Provider>
 	);
 };
-
 export default AuthProvider;
+
