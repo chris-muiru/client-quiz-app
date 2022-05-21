@@ -18,42 +18,66 @@ const Question = () => {
 		data = await data.json();
 		setQuestionDetails(data);
 	};
+	const submitAnswer = async (event) => {
+		event.preventDefault();
+		let URL = `http://localhost:8000/quiz/${id}/`;
+		event.preventDefault();
+		let data = await fetch(URL, {
+			method: "POST",
+			MODE: "cors",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${getToken()}`,
+			},
+			body: JSON.stringify({
+				answer: event.target.quizgroup.value,
+			}),
+		});
+		data = await data.json();
+		console.log(data);
+	};
 	let appendQuestion = (object) => {
 		let arr = [];
 		if (object.length !== 0) {
 			let { question, choices } = object;
 			let { opp1, opp2 } = choices[0];
 			arr.push(
-				<div className="">
-					<h2 className="mb-3">{question}</h2>
-					<form action="">
-						<input
-							type="radio"
-							id="opp1"
-							name="quizgroup"
-							className="my-10 mr-10"
-							value={opp1}
-						/>
-						<label for="opp1" className="">
-							{opp1}
-						</label>
-						<br />
-						<input
-							type="radio"
-							id="opp2"
-							name="quizgroup"
-							className="my-10 mr-10"
-							value={opp2}
-						/>
-						<label for="opp2">{opp2}</label>
-						<br />
-						<button
-							type="submit"
-							className="bg-green-500 border-none rounded-md p-3 w-96"
-						>
-							Submit
-						</button>
-					</form>
+				<div className="m-auto">
+					<div className="bg-slate-800 p-20 rounded-xl">
+						<h2 className="mb-3 text-center text-green-500 ">
+							{question}
+						</h2>
+						<div className="">
+							<form method="post" onSubmit={submitAnswer}>
+								<input
+									type="radio"
+									id="opp1"
+									name="quizgroup"
+									className="my-5 mr-10"
+									value={opp1}
+								/>
+								<label for="opp1" className="">
+									{opp1}
+								</label>
+								<br />
+								<input
+									type="radio"
+									id="opp2"
+									name="quizgroup"
+									className="my-5 mr-10"
+									value={opp2}
+								/>
+								<label for="opp2">{opp2}</label>
+								<br />
+								<button
+									type="submit"
+									className="bg-green-500 border-none rounded-md p-3 w-44 mt-10"
+								>
+									Submit
+								</button>
+							</form>
+						</div>
+					</div>
 				</div>
 			);
 		}
