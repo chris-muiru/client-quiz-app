@@ -34,7 +34,7 @@ const Question = () => {
 		return (
 			<div
 				ref={btnOnclickRef}
-				className={`hidden ${color} rounded-md m-3 text-center p-5`}
+				className={`hidden ${color} rounded-md mb-3 text-center p-5`}
 			>
 				{response}
 			</div>
@@ -75,7 +75,7 @@ const Question = () => {
 	let answer = isAnswerCorrect(answerCorrect);
 	let appendQuestion = (object) => {
 		/**
-		 * an array containing data sen by  
+		 * an array containing data sen by
 		 */
 		let arr = [];
 		if (object.length !== 0) {
