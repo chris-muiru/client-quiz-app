@@ -1,7 +1,7 @@
 import { useAuthContext } from "../AuthProvider";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 const NavBar = () => {
 	let { logoutUser, getToken } = useAuthContext();
 	let [score, setScore] = useState(0);
@@ -30,7 +30,7 @@ const NavBar = () => {
 					</div>
 					<div
 						align="center"
-						className="bg-transparent rounded-3xl absolute  right-1/4 hover:bg-green-700  text-white border-white hover:border-2 box-border"
+						className="bg-transparent rounded-3xl  hover:bg-green-700  text-white border-white hover:border-2 box-border"
 						onClick={logoutUser}
 					>
 						<button className="m-3">
