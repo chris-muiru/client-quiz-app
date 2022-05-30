@@ -80,7 +80,7 @@ const Question = () => {
 		let arr = [];
 		if (object.length !== 0) {
 			let { question, choices } = object;
-			let { opp1, opp2 } = choices[0];
+			let { opp1, opp2 } = choices;
 			arr.push(
 				<div className="m-auto">
 					{answer}
