@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
 			localStorage.setItem("quizAppTokens", JSON.stringify(data));
 			window.location = "/dash";
 		} else {
-			alert("something went wrong");
+			alert("Invalid credentials");
 		}
 	};
 	let logOutUser = () => {
@@ -100,4 +100,3 @@ const AuthProvider = ({ children }) => {
 	);
 };
 export default AuthProvider;
-
