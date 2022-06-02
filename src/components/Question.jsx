@@ -62,13 +62,9 @@ const Question = () => {
 		});
 		data = await data.json();
 		let { status } = data;
-		setAnswerCorrect(() => {
-			if (status === "correct") {
-				return true;
-			}
-			return false;
-		});
+		setAnswerCorrect(status === "correct");
 	};
+
 	const onBtnClick = () => {
 		btnOnclickRef.current.style.display = "block";
 	};
