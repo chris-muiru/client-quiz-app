@@ -30,7 +30,7 @@ const NavBar = () => {
 					</div>
 					<div
 						align="center"
-						className="bg-transparent rounded-3xl  hover:bg-green-700  text-white border-white hover:border-2 box-border"
+						className="bg-transparent rounded-3xl  hover:bg-green-700  text-white border-white hover:border-2 box-border absolute right-20 sm:right-32 md:right-60"
 						onClick={logoutUser}
 					>
 						<button className="m-3">
