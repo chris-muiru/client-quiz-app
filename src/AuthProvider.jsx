@@ -39,13 +39,12 @@ const AuthProvider = ({ children }) => {
 			setToken(data);
 			setUser(jwtDecode(data.access));
 			localStorage.setItem("quizAppTokens", JSON.stringify(data));
-			window.location = "/dash";
+			window.location = "/";
 		} else {
 			alert("Invalid credentials");
 		}
 	};
 	let logOutUser = () => {
-		console.log("clicked");
 		setToken(null);
 		setUser(null);
 		localStorage.removeItem("authTokens");
@@ -70,6 +69,10 @@ const AuthProvider = ({ children }) => {
 	};
 
 	const getToken = () => {
+		/**
+		 * check if token is expired,if true,clear hr localstorege
+		 * and change location to /auth,else return the access token.
+		 */
 		if (jwtDecode(token.access).exp < Date.now() / 1000) {
 			localStorage.clear();
 			window.location = "/auth";
