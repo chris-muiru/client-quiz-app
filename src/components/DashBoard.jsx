@@ -29,7 +29,7 @@ const DashBoard = () => {
 		<div className="flex w-3/4 m-auto flex-col mt-10 xl:w-1/2">
 			{questions.map(({ id, question }) => {
 				return (
-					<Link to={`/dash/${id}`}>
+					<Link to={`/${id}`}>
 						<QuestionHeader question={question} />
 					</Link>
 				);
