@@ -7,7 +7,7 @@ const MainRoutes = () => {
 	return (
 		<Routes>
 			<Route
-				path="/dash/*"
+				path="*"
 				element={!user ? <Navigate to="/auth" /> : <Main />}
 			/>
 		</Routes>
