@@ -1,12 +1,12 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import "./assets/output.css";
-import Header from "./components/Header";
-import AuthProvider from "./AuthProvider";
-import AuthRoutes from "./Routes/AuthRoutes";
-import MainRoutes from "./Routes/MainRoutes";
+import { BrowserRouter as Router } from "react-router-dom"
+import "./assets/output.css"
+import Header from "./components/Header"
+import AuthProvider from "./Context/AuthProvider"
+import AuthRoutes from "./Routes/AuthRoutes"
+import MainRoutes from "./Routes/MainRoutes"
 const App = () => {
 	return (
-		<div className="w-full bg-slate-700 block fixed h-full">
+		<div className="bg-slate-700 overflow-auto h-screen">
 			<Header />
 			<AuthProvider>
 				<Router>
@@ -15,7 +15,7 @@ const App = () => {
 				</Router>
 			</AuthProvider>
 		</div>
-	);
-};
+	)
+}
 
-export default App;
+export default App
