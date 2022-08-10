@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Navigate, Routes } from "react-router-dom";
-import { useAuthContext } from "../AuthProvider";
+import { useAuthContext } from "../Context/AuthProvider";
 import Main from "../Main";
 const MainRoutes = () => {
 	let { user } = useAuthContext();
 	return (
 		<Routes>
 			<Route
-				path="*"
+				path="/dash/*"
 				element={!user ? <Navigate to="/auth" /> : <Main />}
 			/>
 		</Routes>
