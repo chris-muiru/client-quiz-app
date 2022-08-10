@@ -1,16 +1,16 @@
-import React from "react";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import NavRoutes from "./Routes/NavRoutes";
+import React from "react"
+import Footer from "./components/Footer"
+import NavBar from "./components/NavBar"
+import NavRoutes from "./Routes/NavRoutes"
 
 const Main = () => {
 	return (
-		<div>
+		<>
 			<NavBar />
 			<NavRoutes />
-			<Footer />
-		</div>
-	);
-};
+			<Footer/>
+		</>
+	)
+}
 
-export default Main;
+export default Main
