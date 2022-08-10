@@ -3,12 +3,9 @@ const Footer = () => {
 	 * a footer
 	 */
 	return (
-		<div className="bg-black absolute bottom-0 w-full">
-			<div className=""></div>
-			<div class="bg-black text-white text-center">
-				<span>2021 Copyright: Chris Muiru</span>
-			</div>
+		<div class="bg-black text-white text-center absolute w-full bottom-0 ">
+			<span>2021 Copyright: Chris Muiru</span>
 		</div>
-	);
-};
-export default Footer;
+	)
+}
+export default Footer
