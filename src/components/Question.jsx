@@ -1,18 +1,18 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
-import { useAuthContext } from "../AuthProvider";
+import { useParams } from "react-router-dom"
+import { useEffect, useState, useRef } from "react"
+import { useAuthContext } from "../Context/AuthProvider"
 const Question = () => {
-	let [questionDetails, setQuestionDetails] = useState([]);
-	let [answerCorrect, setAnswerCorrect] = useState(false);
-	let btnOnclickRef = useRef();
-	let { id } = useParams();
-	let { getToken } = useAuthContext();
+	let [questionDetails, setQuestionDetails] = useState([])
+	let [answerCorrect, setAnswerCorrect] = useState(false)
+	let btnOnclickRef = useRef()
+	let { id } = useParams()
+	let { getToken } = useAuthContext()
 	let fetchQuestionSelected = async () => {
 		/**
 		 * fetch all questions from quiz
 		 * save the questions in questionDetails state
 		 */
-		let URL = `http://localhost:8000/quiz/${id}`;
+		let URL = `http://localhost:8000/quiz/${id}`
 		let data = await fetch(URL, {
 			method: "GET",
 			mode: "cors",
@@ -20,17 +20,17 @@ const Question = () => {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${getToken()}`,
 			},
-		});
-		data = await data.json();
-		setQuestionDetails(data);
-	};
+		})
+		data = await data.json()
+		setQuestionDetails(data)
+	}
 	const isAnswerCorrect = (status) => {
 		/**
 		 * check the status of question.
 		 * use spefied classNames based on the status answer
 		 */
-		let response = status ? "Correct Answer" : "Incorrect answer";
-		let color = status ? "bg-green-700" : "bg-red-600";
+		let response = status ? "Correct Answer" : "Incorrect answer"
+		let color = status ? "bg-green-700" : "bg-red-600"
 		return (
 			<div
 				ref={btnOnclickRef}
@@ -38,17 +38,17 @@ const Question = () => {
 			>
 				{response}
 			</div>
-		);
-	};
+		)
+	}
 	const submitAnswer = async (event) => {
 		/**
 		 * post form data to /quiz/:id.
 		 * object returns - {status:correct}
 		 * if status correct,set answerCorrect to true else false
 		 */
-		event.preventDefault();
-		let URL = `http://localhost:8000/quiz/${id}/`;
-		event.preventDefault();
+		event.preventDefault()
+		let URL = `http://localhost:8000/quiz/${id}/`
+		event.preventDefault()
 		let data = await fetch(URL, {
 			method: "POST",
 			MODE: "cors",
@@ -59,28 +59,28 @@ const Question = () => {
 			body: JSON.stringify({
 				answer: event.target.quizgroup.value,
 			}),
-		});
-		data = await data.json();
-		let { status } = data;
-		setAnswerCorrect(status === "correct");
-	};
+		})
+		data = await data.json()
+		let { status } = data
+		setAnswerCorrect(status === "correct")
+	}
 
 	const onBtnClick = () => {
-		btnOnclickRef.current.style.display = "block";
-	};
-	let answer = isAnswerCorrect(answerCorrect);
+		btnOnclickRef.current.style.display = "block"
+	}
+	let answer = isAnswerCorrect(answerCorrect)
 	let appendQuestion = (object) => {
 		/**
 		 * an array containing data sen by
 		 */
-		let arr = [];
+		let arr = []
 		if (object.length !== 0) {
-			let { question, choices } = object;
-			let { opp1, opp2 } = choices;
+			let { question, choices } = object
+			let { opp1, opp2 } = choices
 			arr.push(
-				<div className="m-auto">
+				<div className="">
 					{answer}
-					<div className="bg-slate-800 p-20 rounded-xl">
+					<div className=" p-20 sm:rounded-xl">
 						<h2 className="mb-3 sm:text-center text-green-500 ">
 							{question}
 						</h2>
@@ -120,20 +120,20 @@ const Question = () => {
 						</div>
 					</div>
 				</div>
-			);
+			)
 		}
-		return arr;
-	};
+		return arr
+	}
 	useEffect(() => {
-		fetchQuestionSelected();
-	}, []);
+		fetchQuestionSelected()
+	}, [])
 	// todo: come up with logic that allows the fetchQuestionSelected to always update questionDetails after every render
-	let questionArr = appendQuestion(questionDetails);
+	let questionArr = appendQuestion(questionDetails)
 	return (
-		<div className="mt-20 w-3/4  text-white m-auto rounded-sm">
+		<div className="mt-20 sm:w-3/4  text-white m-auto bg-slate-800 ">
 			{questionArr}
 		</div>
-	);
-};
+	)
+}
 
-export default Question;
+export default Question
