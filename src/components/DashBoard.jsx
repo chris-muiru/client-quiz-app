@@ -1,7 +1,7 @@
 import QuestionHeader from "./QuestionHeader";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useAuthContext } from "../AuthProvider";
+import { useAuthContext } from "../Context/AuthProvider";
 const DashBoard = () => {
 	/**
 	 * contains all the quizlets from the backend api
@@ -29,7 +29,7 @@ const DashBoard = () => {
 		<div className="flex w-3/4 m-auto flex-col mt-10 xl:w-1/2">
 			{questions.map(({ id, question }) => {
 				return (
-					<Link to={`/${id}`}>
+					<Link to={`/dash/${id}`}>
 						<QuestionHeader question={question} />
 					</Link>
 				);
